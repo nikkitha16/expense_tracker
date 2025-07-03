@@ -10,10 +10,12 @@ const dashboardRoutes = require("./routes/dashboardRoutes.js")
 const app = express();
 
 app.use(cors({
-    origin:process.env.CLIENR_URL || "*",
+    origin:process.env.CLIENT_URL || "*",
     methods:["GET", "POST", "PUT", "DELETE"],
     allowedHeaders:["Content-Type", "Authorization"]
 }));
+app.options("*", cors());
+
 app.use(express.json());
 connectDB();
 app.get("/", (req, res) => {
